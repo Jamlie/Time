@@ -15,9 +15,9 @@ func main() {
 
     start := time.Now().UnixMilli()
     cmd := exec.Command(args, cmdArgs...)
+    out, err := cmd.CombinedOutput()
     end := time.Now().UnixMilli()
 
-    out, err := cmd.CombinedOutput()
     if err != nil {
         if len(out) > 0 {
             fmt.Printf("%s\n", out)
@@ -28,6 +28,5 @@ func main() {
         return
     }
 
-    fmt.Printf("%s\n", out)
     fmt.Printf("Time: %.3f\n", float64(end - start) / 1000)
 }
